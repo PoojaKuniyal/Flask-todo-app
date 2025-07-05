@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+<div class="container my-3">
+  <h2 class="text-primary fw-bold">Add a Todo</h2>
+  <form action="/" method="POST">
+    <div class="mb-3">
+      <label for="title" class="form-label text-primary fw-semibold">Todo Title</label>
+      <input type="text" class="form-control" name="title" id="title" placeholder="Enter task name">
+    </div>
+    <div class="mb-3">
+      <label for="desc" class="form-label text-primary fw-semibold">Todo Description</label>
+      <input type="text" class="form-control" name="desc" id="desc" placeholder="Enter description">
+    </div>
+    <div class="mb-3">
+      <label class="form-label text-primary fw-semibold">Deadline</label>
+      <input type="date" class="form-control" name="deadline">
+    </div>
+    <div class="mb-3">
+      <label class="form-label text-primary fw-semibold">Priority</label>
+      <select class="form-select" name="priority">
+        <option selected value="">Choose</option>
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<div class="container my-3">
+  <h2 class="text-primary fw-bold">Your ToDo List</h2>
+
+  {% if allTodo|length == 0 %}
+  <div class="alert alert-dark" role="alert">
+    No todos found. Start by adding your first todo!
+  </div>
+  {% else %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle text-center" style="table-layout: fixed; width: 100%;">
+      <thead>
+        <tr>
+          <th style="width: 5%;">S.No</th>
+          <th style="width: 15%;">Title</th>
+          <th style="width: 20%;">Description</th>
+          <th style="width: 10%;">Status</th>
+          <th style="width: 12%;">Deadline</th>
+          <th style="width: 10%;">Priority</th>
+          <th style="width: 13%;">Time</th>
+          <th style="width: 15%;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in allTodo %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ todo.title }}</td>
+          <td style="word-wrap: break-word; white-space: normal;">{{ todo.desc }}</td>
+          <td>
+            <form method="POST" action="/toggle/{{ todo.sno }}">
+              <input type="checkbox" onchange="this.form.submit()" {% if todo.status == 'Done' %}checked{% endif %}>
+            </form>
+          </td>
+          <td>{{ todo.deadline or '---' }}</td>
+          <td>{{ todo.priority or '---' }}</td>
+          <td>{{ todo.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+          <td>
+            <a href="/update/{{ todo.sno }}" class="btn btn-outline-primary btn-sm mx-1">Update</a>
+            <a href="/delete/{{ todo.sno }}" class="btn btn-outline-danger btn-sm mx-1">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+{% endblock body %}

@@ -29,20 +29,6 @@ A simple and responsive Todo List web application built with **Flask**, **Bootst
 🌐 Live Demo
 Deployed on Render:https://flask-todo-app-hlb0.onrender.com
 
------
-Folder structure
-
-
-├── app.py
-├── todo.db
-├── requirements.txt
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   └── update.html
-└── static/
-    └── (optional CSS/JS files)
-
 
 ---
 Run

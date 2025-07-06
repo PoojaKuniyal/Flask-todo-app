@@ -17,10 +17,12 @@ A simple and responsive Todo List web application built with **Flask**, **Bootst
 
 ## 🛠️ Tech Stack
 
-- **Backend:** Flask + SQLAlchemy
+- **Backend:** Flask + Flask-SQLAlchemy (using SQLite)
+- **Templating Engine:** Jinja2
 - **Frontend:** HTML, CSS, Bootstrap 5, JavaScript
-- **Database:** SQLite
-- **Deployment:** [Render](https://render.com) 
+- **Deployment:** Render
+
+> Built with **Flask**, using **Jinja2** for templating and **Flask-SQLAlchemy with SQLite** for backend storage.
 
 ---
 
@@ -29,6 +31,8 @@ Deployed on Render:https://flask-todo-app-hlb0.onrender.com
 
 -----
 Folder structure
+
+
 ├── app.py
 ├── todo.db
 ├── requirements.txt
@@ -38,6 +42,7 @@ Folder structure
 │   └── update.html
 └── static/
     └── (optional CSS/JS files)
+
 
 ---
 Run
